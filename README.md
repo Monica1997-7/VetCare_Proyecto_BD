@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 # VetCare_Proyecto_BD
 Proyecto integrador para el curso de Base de Datos, Clínica Veterinaria «Huellitas»
 =======
+=======
+>>>>>>> 8c844945192273e3d862f62101c488ddf1389af2
 # VetCare DB — Clínica Veterinaria «Huellitas»
 
 Proyecto Integrador de **Bases de Datos II (FI303215)** — UNIAJC.
@@ -25,6 +28,7 @@ createdb -U postgres bd_VetCare
 Los scripts están pensados para correr completos y en orden. Se pueden ejecutar desde psql o desde pgAdmin (Query Tool).
 
 ```bash
+<<<<<<< HEAD
 psql -U postgres -d bd_VetCare  -v ON_ERROR_STOP=1 -f scripts/01_ddl.sql
 psql -U postgres -d bd_VetCare  -v ON_ERROR_STOP=1 -f scripts/02_roles_y_privilegios.sql
 psql -U postgres -d bd_VetCare  -v ON_ERROR_STOP=1 -f scripts/03_programables.sql
@@ -33,6 +37,16 @@ psql -U postgres -d bd_VetCare  -v ON_ERROR_STOP=1 -f scripts/04_optimizacion.sq
 
 > `ON_ERROR_STOP=1` hace que psql se detenga ante el primer error; es útil para las capturas.
 > Los archivos no usan `\c`: se conecta uno directamente a `bd_VetCare ` (así también funcionan en pgAdmin).
+=======
+psql -U postgres -d bd_VetCare -v ON_ERROR_STOP=1 -f scripts/01_ddl.sql
+psql -U postgres -d bd_VetCare -v ON_ERROR_STOP=1 -f scripts/02_roles_y_privilegios.sql
+psql -U postgres -d bd_VetCare -v ON_ERROR_STOP=1 -f scripts/03_programables.sql
+psql -U postgres -d bd_VetCare -v ON_ERROR_STOP=1 -f scripts/04_optimizacion.sql
+```
+
+> `ON_ERROR_STOP=1` hace que psql se detenga ante el primer error; es útil para las capturas.
+> Los archivos no usan `\c`: se conecta uno directamente a `bd_VetCare` (así también funcionan en pgAdmin).
+>>>>>>> 8c844945192273e3d862f62101c488ddf1389af2
 > El **01** se ejecuta una sola vez sobre una base nueva. Para reinstalar, descomentar el `DROP TABLE` del inicio del archivo.
 > Los scripts **02, 03 y 04 se pueden volver a ejecutar** sin duplicar datos ni privilegios.
 
@@ -42,7 +56,11 @@ psql -U postgres -d bd_VetCare  -v ON_ERROR_STOP=1 -f scripts/04_optimizacion.sq
 |---|---|
 | `scripts/01_ddl.sql` | 8 tablas del caso + tabla `auditoria`, llaves, CHECK, índices y datos del elenco. |
 | `scripts/02_roles_y_privilegios.sql` | Los 2 roles, `GRANT`/`REVOKE` y prueba real de privilegios. |
+<<<<<<< HEAD
 | scripts/03_programables.sql | 2 procedimientos, 1 función, 2 disparadores y sus casos de prueba. |
+=======
+| `scripts/03_programables.sql` | 2 procedimientos, 1 función, 2 disparadores y sus casos de prueba. |
+>>>>>>> 8c844945192273e3d862f62101c488ddf1389af2
 | `scripts/04_optimizacion.sql` | `EXPLAIN ANALYZE` antes/después con dataset temporal de 30.010 citas. |
 
 ---
@@ -92,7 +110,11 @@ rol_operativo  / VetOper#2026
 Prueba manual:
 
 ```bash
+<<<<<<< HEAD
 psql -U rol_operativo -d bd_VetCare 
+=======
+psql -U rol_operativo -d bd_VetCare
+>>>>>>> 8c844945192273e3d862f62101c488ddf1389af2
   SELECT * FROM cita LIMIT 5;                       -- funciona
   UPDATE insumo SET precio = 1 WHERE id_insumo = 1; -- ERROR: permiso denegado
   DELETE FROM cita WHERE id_cita = 1;               -- ERROR: permiso denegado
@@ -188,8 +210,15 @@ pg_restore -U postgres -d vetcare_restore --clean --if-exists /respaldos/vetcare
 
 - **Seguridad:** solo 2 roles (`rol_admin`, `rol_operativo`).
 - **Lógica:** 2 procedimientos y 1 función, cada uno con su prueba.
+<<<<<<< HEAD
 - **Disparadores:** 1 obligatorio de auditoría (una sola función aplicada a `insumo` y `cita`) y 1 de bono (stock y total de factura).
 - **Optimización:** 1 consulta obligatoria con `EXPLAIN` antes/después; la segunda es bono.
 - **Sin código de aplicación:** solo SQL y este README.
 - El alcance ajustado del 7 de noviembre no pide ejecutar el respaldo, solo el plan escrito.
 >>>>>>> Stashed changes
+=======
+- **Disparadores:** 2 Disparadores: 1 obligatorio de auditoría (una sola función aplicada a `insumo` y `cita`) y 1 de bono (stock y total de factura).
+- **Optimización:** 1 consulta obligatoria con `EXPLAIN` antes/después; la segunda es bono.
+- **Sin código de aplicación:** solo SQL y este README.
+- El alcance ajustado del 7 de noviembre no pide ejecutar el respaldo, solo el plan escrito.
+>>>>>>> 8c844945192273e3d862f62101c488ddf1389af2
